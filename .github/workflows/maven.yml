@@ -63,4 +63,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: 396288590846.dkr.ecr.ap-south-1.amazonaws.com/hello-devops:${{ github.sha }}
+                    tags: |
+            396288590846.dkr.ecr.ap-south-1.amazonaws.com/hello-devops:${{ github.sha }}
+            396288590846.dkr.ecr.ap-south-1.amazonaws.com/hello-devops:latest
