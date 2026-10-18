@@ -3,6 +3,6 @@ package com.example;
 
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello DevOps! Maven build successful.");
+        System.out.println("Hello DevOps! Feature branch test.");
     }
 }
