@@ -2,3 +2,13 @@ target/
 .idea/
 .vscode/
 *.iml
+# Local AWS lab configuration files
+/aws
+/ec2-ecr-pull-policy.json
+/ec2-trust-policy.json
+/ecr-push-policy-clean.json
+/ecr-push-policy-final.json
+/ecr-push-policy.json
+/github-oidc-trust-clean.json
+/github-oidc-trust-final.json
+/github-oidc-trust.json
