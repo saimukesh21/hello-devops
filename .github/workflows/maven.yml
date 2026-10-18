@@ -27,6 +27,13 @@ jobs:
       - name: Build and test
         run: mvn --batch-mode clean verify
 
+      - name: Upload JAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hello-devops-jar
+          path: target/hello-devops-1.0.0.jar
+          if-no-files-found: error
+
   publish-ecr:
     needs: build-test
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -39,15 +46,11 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
 
-      - name: Set up Java 17
-        uses: actions/setup-java@v4
+      - name: Download JAR artifact
+        uses: actions/download-artifact@v4
         with:
-          distribution: temurin
-          java-version: '17'
-          cache: maven
-
-      - name: Build and test
-        run: mvn --batch-mode clean verify
+          name: hello-devops-jar
+          path: target
 
       - name: Configure AWS credentials using OIDC
         uses: aws-actions/configure-aws-credentials@v4
@@ -63,6 +66,6 @@ jobs:
         with:
           context: .
           push: true
-                    tags: |
+          tags: |
             396288590846.dkr.ecr.ap-south-1.amazonaws.com/hello-devops:${{ github.sha }}
             396288590846.dkr.ecr.ap-south-1.amazonaws.com/hello-devops:latest
